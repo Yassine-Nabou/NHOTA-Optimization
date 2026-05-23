@@ -28,10 +28,7 @@ gr()
 const DATASET_URL = "https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/gisette_scale.bz2"
 # a1a: n=1605 samples, d=119 features
 # gisette_scale.bz2
-# duke.bz2
-#
-# leu.bz2
-#
+#Duke
 # ============================================================================
 # PART 1: Load LIBSVM Dataset (Supports both text and .bz2 files)
 # ============================================================================
