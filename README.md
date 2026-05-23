@@ -23,16 +23,9 @@ $$F(x) = \frac{1}{n} \sum_{i=1}^n \log\left(1 + \exp(-b_i a_i^T x)\right) + \lam
 
 ## 📈 Empirical Convergence Summary
 
-Extensive benchmarks across varying real-world datasets demonstrate an exact outer iteration hierarchy ($p=3 < p=2 < p=1$). Implementing nonmonotone tracking ($u=0.5$) prevents line-search stagnation and drops computational runtimes drastically compared to strict monotone variants ($u=1.0$):
-
-| Dataset | Method | Outer Iterations | Objective Value ($f$) | Stationarity ($S_f$) | CPU Time (s) |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| **gisette** ($d=5000$) | `NHOTA_p3_u0.5` | **9** | 0.690083 | $4.44 \times 10^{-6}$ | 41.324 |
-| | `NHOTA_p2_u0.5` | 10 | 0.690083 | $8.89 \times 10^{-6}$ | **0.437** |
-| | `Baseline_PG` | 100 | 0.690083 | $3.78 \times 10^{-4}$ | 28.611 |
-| **duke** ($d=7129$) | `NHOTA_p3_u0.5` | **9** | 0.233441 | $2.51 \times 10^{-6}$ | 3.462 |
-| | `NHOTA_p2_u0.5` | 11 | 0.233441 | $6.61 \times 10^{-6}$ | **0.016** |
-| | `Baseline_PG` | 88 | 0.233441 | $8.87 \times 10^{-6}$ | 0.130 |
+Extensive benchmarks across real-world datasets (`gisette`, `duke`, `a1a`) reveal two major insights:
+1. **The Iteration Hierarchy Holds:** Higher-order tracking consistently yields fewer outer iterations to reach a target stationarity tolerance $\epsilon = 10^{-5}$ ($p=3 \le p=2 \le p=1$).
+2. **Nonmonotonicity is Crucial:** Implementing nonmonotone tracking ($u=0.5$) prevents line-search stagnation and drops computational runtimes drastically over strict monotone variants ($u=1.0$), positioning the $p=2$ nonmonotone configuration as the ideal computational sweet spot for high-dimensional setups.
 
 ---
 
